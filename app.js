@@ -29,11 +29,11 @@ router.options('*', cors())
 
         const db = req.db;
         const loginInformation = db.get('loginInformation');
-        var body = JSON.stringify(req.body);
+        var body = req.body;
       
             loginInformation.insert(body)
                       
-res.status(200).send('done');
+res.status(200).send(body);
     
           });
       //} 
