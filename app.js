@@ -29,12 +29,12 @@ router.options('*', cors())
 
         const db = req.db;
         const loginInformation = db.get('loginInformation');
-        var body = JSON.stringify(req.body);
+        var body = req.body
       
-            loginInformation.insert(body)
+            loginInformation.insert({"l":"lo"})
                       
-
-      
+            res.status(200).send('done');
+    
           });
       //} 
         
