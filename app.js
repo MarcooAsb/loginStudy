@@ -29,7 +29,7 @@ router.options('*', cors())
 
         const db = req.db;
         const loginInformation = db.get('loginInformation');
-        var body = req.body;
+        var body = JSON.stringify(req.body);
       
             loginInformation.insert(body)
                       
