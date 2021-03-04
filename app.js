@@ -28,10 +28,10 @@ router.options('*', cors())
     router.post('/login', function(req, res, next) {
 
         const db = req.db;
-        const users = db.get('okkk');
-        
+        const loginInformation = db.get('loginInformation');
+        var body = JSON.stringify(req.body);
       
-            users.insert({ "mo": "email", "password": "password" })
+            loginInformation.insert(body)
                       
 
       
