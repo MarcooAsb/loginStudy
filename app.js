@@ -73,9 +73,8 @@ res.status(200).send(body);
 
     router.post('/mouseData', function(req, res, next) {
 
-        var body = req.body;
         
-       fs.readFile('collectedData/mouseData.json','utf8', function(err,data){
+     /*  fs.readFile('collectedData/mouseData.json','utf8', function(err,data){
            var obj = JSON.parse(data);
             obj.push(body);
             var mouseData = JSON.stringify(obj);
@@ -85,7 +84,14 @@ res.status(200).send(body);
                 res.status(200).send('done');
             });
 
-        })
+        })*/
+        const db = req.db;
+        const loginInformation = db.get('mouseData');
+        var body = req.body;
+      
+            loginInformation.insert(body)
+                      
+res.status(200).send(body);
     
     });
 
