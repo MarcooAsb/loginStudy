@@ -6,7 +6,8 @@ const fs = require('fs');
 const cors = require('cors');
 const path = require('path');
 const PORT = process.env.PORT || 5000
-
+const uri = process.env.MONGODB_URI;
+const db = require('monk')(uri);
 
 
 
@@ -14,7 +15,10 @@ const PORT = process.env.PORT || 5000
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.json({limit: '1000mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '1000mb', extended: true}))
-
+app.use((req,res,next) => {
+    req.db = db;
+    next();
+  });
 // add router in the Express app.
 app.use("/", router);
 
@@ -23,9 +27,18 @@ router.options('*', cors())
 
     router.post('/login', function(req, res, next) {
 
-        var body = req.body;
+        const db = req.db;
+        const users = db.get('okkk');
         
-       fs.readFile('collectedData/login.json','utf8', function(err,data){
+      
+            users.insert({ "mo": "email", "password": "password" })
+                      
+
+      
+          });
+      //} 
+        
+      /* fs.readFile('collectedData/login.json','utf8', function(err,data){
            var obj = JSON.parse(data);
             obj.push(body);
             var loginInformations = JSON.stringify(obj);
@@ -36,8 +49,8 @@ router.options('*', cors())
             });
 
         })
-    
-    });
+    */
+   // });
 
 
     router.post('/gazeData', function(req, res, next) {
