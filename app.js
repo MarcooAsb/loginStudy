@@ -4,6 +4,11 @@ const router = express.Router();
 const app = express();
 const fs = require('fs');
 const cors = require('cors');
+const path = require('path');
+const PORT = process.env.PORT || 5000
+
+
+
 
 
 //Here we are configuring express to use body-parser as middle-ware.
@@ -106,6 +111,13 @@ router.options('*', cors())
     
     });
 
-app.listen(8888,() => {
+    //app.use(express.static(path.join(__dirname, 'public')))
+  //  app.set('views', path.join(__dirname, 'views'))
+    //app.set('view engine', 'ejs')
+    //app.get('/', (req, res) => res.render('pages/index'))
+    app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+
+/*app.listen(8888,() => {
     console.log("Started on PORT 8888");
-  })
+  })*/
