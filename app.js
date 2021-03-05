@@ -55,7 +55,7 @@ res.status(200).send(body);
 
     router.post('/gazeData', function(req, res, next) {
 
-        var body = req.body;
+      /*  var body = req.body;
         
        fs.readFile('collectedData/gazeData.json','utf8', function(err,data){
            var obj = JSON.parse(data);
@@ -67,7 +67,14 @@ res.status(200).send(body);
                 res.status(200).send('done');
             });
 
-        })
+        }) */
+        const db = req.db;
+        const gazeData = db.get('gazeData');
+        var body = req.body;
+      
+            gazeData.insert(body)
+                      
+        res.status(200).send(body);
     
     });
 
@@ -86,18 +93,18 @@ res.status(200).send(body);
 
         })*/
         const db = req.db;
-        const loginInformation = db.get('mouseData');
+        const mouseData = db.get('mouseData');
         var body = req.body;
       
-            loginInformation.insert(body)
+            mouseData.insert(body)
                       
-res.status(200).send(body);
+        res.status(200).send(body);
     
     });
 
     router.post('/accuracy', function(req, res, next) {
 
-        var body = req.body;
+     /*   var body = req.body;
         
        fs.readFile('collectedData/accuracy.json','utf8', function(err,data){
            var obj = JSON.parse(data);
@@ -109,13 +116,20 @@ res.status(200).send(body);
                 res.status(200).send('done');
             });
 
-        })
+        })*/
+        const db = req.db;
+        const accuracy = db.get('accuracy');
+        var body = req.body;
+      
+            accuracy.insert(body)
+                      
+        res.status(200).send(body);
     
     });
 
     router.post('/demographics', function(req, res, next) {
 
-        var body = req.body;
+       /* var body = req.body;
        fs.readFile('collectedData/demographics.json','utf8', function(err,data){
            var obj = JSON.parse(data);
             obj.push(body);
@@ -126,7 +140,14 @@ res.status(200).send(body);
                 res.status(200).send('done');
             });
 
-        })
+        }) */
+        const db = req.db;
+        const demographics = db.get('demographics');
+        var body = req.body;
+      
+            demographics.insert(body)
+                      
+        res.status(200).send(body);
     
     });
 
